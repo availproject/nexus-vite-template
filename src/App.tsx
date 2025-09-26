@@ -1,10 +1,6 @@
 import ConnectWallet from "./components/blocks/connect-wallet";
-import Nexus from "./components/nexus";
-import NexusInitButton from "./components/nexus-init";
-import { useNexus } from "./providers/NexusProvider";
 
 function App() {
-  const { nexusSDK } = useNexus();
   return (
     <div className="flex items-center justify-center flex-col gap-y-4 h-full w-full max-w-3xl mx-auto">
       <div
@@ -22,9 +18,7 @@ function App() {
       </h2>
       <div className="flex gap-x-4 items-center justify-center ">
         <ConnectWallet />
-        <NexusInitButton />
       </div>
-      {nexusSDK?.isInitialized() && <Nexus />}
     </div>
   );
 }

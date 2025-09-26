@@ -17,7 +17,6 @@ import {
 } from "wagmi/chains";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import NexusProvider from "./NexusProvider";
 
 const walletConnectProjectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
 
@@ -75,7 +74,7 @@ const Web3Provider = ({ children }: { children: React.ReactNode }) => {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <ConnectKitProvider theme="soft" mode="light">
-          <NexusProvider>{children}</NexusProvider>
+          {children}
         </ConnectKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
