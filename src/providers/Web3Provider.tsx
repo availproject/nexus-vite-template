@@ -1,3 +1,4 @@
+"use client";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import {
   mainnet,
@@ -17,9 +18,9 @@ import {
 } from "wagmi/chains";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import NexusProvider from "./NexusProvider";
+import NexusProvider from "@/components/nexus/NexusProvider";
 
-const walletConnectProjectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
+const walletConnectProjectId = process.env.VITE_WALLETCONNECT_PROJECT_ID;
 
 const config = createConfig(
   getDefaultConfig({
@@ -59,14 +60,14 @@ const config = createConfig(
     walletConnectProjectId: walletConnectProjectId!,
 
     // Required App Info
-    appName: "Avail Nexus",
+    appName: "Avail Nexus Vite Template",
 
     // Optional App Info
-    appDescription: "Avail Nexus",
+    appDescription: "Avail Nexus Vite Template",
     appUrl: "https://www.availproject.org/",
     appIcon:
-      "https://www.availproject.org/_next/static/media/avail_logo.9c818c5a.png",
-  }),
+      "https://framerusercontent.com/images/fU0bGT9LbVp0sy4WwRkzkeOZuI.png?width=1552&height=514",
+  })
 );
 const queryClient = new QueryClient();
 
@@ -74,9 +75,11 @@ const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider theme="soft" mode="light">
-          <NexusProvider>{children}</NexusProvider>
-        </ConnectKitProvider>
+        <NexusProvider>
+          <ConnectKitProvider theme="soft" mode="light">
+            {children}
+          </ConnectKitProvider>
+        </NexusProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );
